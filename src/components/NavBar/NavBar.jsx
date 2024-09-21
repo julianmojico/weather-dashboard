@@ -58,7 +58,7 @@ export default function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            WEATHER DASHBOARD
+            WEATHER
           </Typography>
           <Container>
             <Search>
