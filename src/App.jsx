@@ -15,23 +15,24 @@ function App() {
     });
 
   return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} disableTransitionOnChange>
           <Stack
               direction="column"
               spacing={1}
               sx={{
                   justifyContent: "center",
                   alignItems: "flex-start",
+                  bgcolor: 'background.default',
               }}
           >
-              <Container sx={{border: 1}}>
-                  <NavBar/>
+              <Container>
+                  <NavBar />
               </Container >
-              <Container sx={{border: 1}}>
+              <Container>
                   <Week/>
               </Container>
-              <Container sx={{border: 1}}>
-                  <DetailedView></DetailedView>
+              <Container>
+                  <DetailedView />
               </Container>
           </Stack>
       </ThemeProvider>
