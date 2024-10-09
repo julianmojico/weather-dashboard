@@ -1,11 +1,14 @@
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
+import {styled, alpha, useColorScheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid2";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -14,12 +17,7 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.black, 0.25),
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-  },
+  width: '100%'
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -47,20 +45,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const { mode, setMode } = useColorScheme();
+  if (!mode) {
+    return null;
+  }
+
+  function handleChange(event) {
+    setMode(event.target.value);
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            WEATHER
-          </Typography>
-          <Container>
+      <Paper elevation={6} sx={{ borderRadius: 2, p: 1.5, textAlign: 'start' }}>
+        <Grid container spacing={{ sm: 2 }} alignItems="center">
+          <Grid item key={'appTitle'} size={'auto'}>
+            <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+            >
+              WEATHER
+            </Typography>
+          </Grid>
+          <Grid item key={'searchBox'} size={'grow'}>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -70,10 +78,29 @@ export default function NavBar() {
                   inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-          </Container>
-          <Box sx={{ flexGrow: 1 }} />
-        </Toolbar>
-      </AppBar>
+          </Grid>
+          <Grid item key={'mode'} size={'auto'}>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth size={'small'}>
+                <InputLabel id="demo-simple-select-label">Theme</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={mode}
+                    label="Theme"
+                    onChange={handleChange}
+                    variant="outlined"
+                    autoWidth
+                >
+                  <MenuItem value={'system'}>System</MenuItem>
+                  <MenuItem value={'light'}>Light</MenuItem>
+                  <MenuItem value={'dark'}>Dark</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
     </Box>
   );
 }
