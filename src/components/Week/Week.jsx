@@ -9,30 +9,30 @@ export default function Week() {
         <Box sx={{flexGrow: 1}}>
             <Grid container spacing={{xs: 2, md: 3}}>
 
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 3}}>
+                <Grid  key={'Monday'}   size={{xs: 12, sm: 12, md: 3}}>
                     <CurrentDayPaper day={"Monday"} icon={<WbSunnyIcon fontSize={"inherit"}/>} temp={30}/>
                 </Grid>
 
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
+                <Grid  key={'Tuesday'}   size={{xs: 12, sm: 12, md: 1.5}}>
                     <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
                 </Grid>
 
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
+                <Grid  key={'Wednesday'}   size={{xs: 12, sm: 12, md: 1.5}}>
                     <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
                 </Grid>
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
-                    <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
-                </Grid>
-
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
+                <Grid  key={'Thursday'}   size={{xs: 12, sm: 12, md: 1.5}}>
                     <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
                 </Grid>
 
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
+                <Grid  key={'Friday'}   size={{xs: 12, sm: 12, md: 1.5}}>
                     <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
                 </Grid>
 
-                <Grid item key={1} size={{xs: 12, sm: 12, md: 1.5}}>
+                <Grid  key={'Saturday'}   size={{xs: 12, sm: 12, md: 1.5}}>
+                    <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
+                </Grid>
+
+                <Grid  key={'Sunday'}   size={{xs: 12, sm: 12, md: 1.5}}>
                     <FutureDayPaper day={"Mon"} icon={<WbSunnyIcon/>} temp={30}/>
                 </Grid>
             </Grid>
