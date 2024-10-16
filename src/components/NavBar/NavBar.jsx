@@ -58,7 +58,7 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <Paper elevation={6} sx={{ borderRadius: 2, p: 1.5, textAlign: 'start' }}>
         <Grid container spacing={{ sm: 2 }} alignItems="center">
-          <Grid item key={'appTitle'} size={'auto'}>
+          <Grid key={'appTitle'} size={'auto'}>
             <Typography
                 variant="h6"
                 noWrap
@@ -68,7 +68,7 @@ export default function NavBar() {
               WEATHER
             </Typography>
           </Grid>
-          <Grid item key={'searchBox'} size={'grow'}>
+          <Grid key={'searchBox'} size={'grow'}>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -79,7 +79,7 @@ export default function NavBar() {
               />
             </Search>
           </Grid>
-          <Grid item key={'mode'} size={'auto'}>
+          <Grid key={'mode'} size={'auto'}>
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth size={'small'}>
                 <InputLabel id="demo-simple-select-label">Theme</InputLabel>
