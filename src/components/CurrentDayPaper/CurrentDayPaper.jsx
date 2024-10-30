@@ -4,7 +4,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import Stack from "@mui/material/Stack";
 import TempViewer from "../TempViewer/TempViewer.jsx";
 
-export default function CurrentDayPaper({day, icon, temp}) {
+export default function CurrentDayPaper({day, icon, minTemp, maxTemp}) {
     return (
         <Paper elevation={6} sx={{maxWidth: 1, borderRadius: 2, p: 1.5}}>
             <Typography gutterBottom variant="subtitle1" component="div" align={"left"} sx={{color: "text.secondary"}}>
@@ -18,7 +18,7 @@ export default function CurrentDayPaper({day, icon, temp}) {
                     14:23
                 </Typography>
             </Stack>
-            <TempViewer minTemp={temp} maxTemp={temp} icon={icon} direction={"row"} minTempVariant={"h4"} maxTempVariant={"h3"}/>
+            <TempViewer minTemp={minTemp} maxTemp={maxTemp} icon={icon} direction={"row"} minTempVariant={"h4"} maxTempVariant={"h3"}/>
         </Paper>
     );
 }
