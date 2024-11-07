@@ -4,6 +4,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny'; //Solcito
 import FutureDayPaper from "../FutureDayPaper/FutureDayPaper.jsx";
 import CurrentDayPaper from "../CurrentDayPaper/CurrentDayPaper.jsx";
 import {mapEpochToDayAndDate} from "../../utils/utils.js";
+import WeatherIcon from "../icon/WeatherIcon.jsx";
 
 export default function Week({dailyForecasts}) {
 
@@ -13,7 +14,10 @@ export default function Week({dailyForecasts}) {
         let dayOfWeek = mapEpochToDayAndDate(dailyForecast.EpochDate);
 
         return {
+
             dayOfWeek,
+            alt: dailyForecast.Day.IconPhrase,
+            icon: dailyForecast.Day.Icon,
             minTemp: dailyForecast.Temperature.Minimum.Value,
             maxTemp: dailyForecast.Temperature.Maximum.Value
         };
@@ -29,7 +33,9 @@ export default function Week({dailyForecasts}) {
                 <Grid key={'Monday'} size={{xs: 12, sm: 12, md: 3}}>
                     <CurrentDayPaper
                         day={dailyForecastArray[0].dayOfWeek}
-                        icon={<WbSunnyIcon fontSize={"inherit"}/>}
+                        icon={<WeatherIcon
+                            icon={dailyForecastArray[0].icon}
+                            alt={dailyForecastArray[0].alt} />}
                         minTemp={dailyForecastArray[0].minTemp} maxTemp={dailyForecastArray[0].maxTemp}/>
 
                     <span>{dailyForecasts[0]?.Date}</span>

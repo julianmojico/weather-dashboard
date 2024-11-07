@@ -18,7 +18,7 @@ export default function CurrentDayPaper({day, icon, minTemp, maxTemp}) {
                     14:23
                 </Typography>
             </Stack>
-            <TempViewer minTemp={minTemp} maxTemp={maxTemp} icon={icon} direction={"row"} minTempVariant={"h4"} maxTempVariant={"h3"}/>
+            <TempViewer minTemp={minTemp} maxTemp={maxTemp} icon={icon} direction={"column-reverse"} minTempVariant={"h4"} maxTempVariant={"h3"}/>
         </Paper>
     );
 }
