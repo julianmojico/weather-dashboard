@@ -18,7 +18,6 @@ function App() {
         apiCall()
             .then((data) => {
                 console.log(data);
-                console.log(data?.DailyForecasts[0].Day.Icon);
                 setWeatherData(data);
             })
             .catch(error => console.error(error));
