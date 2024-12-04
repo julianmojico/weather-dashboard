@@ -30,7 +30,7 @@ export default function Week({ dailyForecasts }) {
 
                     return index === 0 ?
 
-                        <Grid key={index} size={{ xs: 12, sm: 12, md: 3 }}>
+                        <Grid key={index} size={{ xs: 12, sm: 12, md: 4 }}>
                             <CurrentDayPaper
                                 epochDate={forecast.epochDate}
                                 icon={<WeatherIcon
@@ -41,7 +41,7 @@ export default function Week({ dailyForecasts }) {
 
                         :
 
-                        <Grid key={index} size={{ xs: 12, sm: 12, md: 1.5 }}>
+                        <Grid key={index} size={{ xs: 12, sm: 12, md: 2 }}>
                             <FutureDayPaper
                                 epochDate={forecast.epochDate}
                                 icon={<WeatherIcon
