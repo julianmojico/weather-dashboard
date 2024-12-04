@@ -6,7 +6,7 @@ import NavBar from './components/NavBar/NavBar';
 import Container from "@mui/material/Container";
 import DetailedView from "./components/DetailedView/DetailedView.jsx";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-import apiCall from './api/WeatherAPI';
+import {fetchForecast} from './api/WeatherAPI';
 
 
 function App() {
@@ -15,9 +15,8 @@ function App() {
 
     useEffect(() => {
 
-        apiCall()
+        fetchForecast()
             .then((data) => {
-                console.log(data);
                 setWeatherData(data);
             })
             .catch(error => console.error(error));
