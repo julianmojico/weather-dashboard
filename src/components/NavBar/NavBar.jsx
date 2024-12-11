@@ -9,6 +9,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {useState} from "react";
+import {fetchLocations} from "../../api/WeatherAPI.js";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,12 +48,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavBar() {
   const { mode, setMode } = useColorScheme();
+  const [searchValue, setSearchValue] = useState("")
+  const [locationData, setLocationData] = useState(null)
   if (!mode) {
     return null;
   }
 
   function handleChange(event) {
     setMode(event.target.value);
+  }
+
+  function handleSearchChange(event) {
+      let value = event.target.value;
+      setSearchValue(value)
+  }
+
+  function triggerSearch(event) {
+    event.preventDefault();
+    if (event.key === 'Enter') {
+      fetchLocations(searchValue)
+          .then((data) => setLocationData(data))
+          .catch(error => console.error(error));
+    }
   }
 
   return (
@@ -76,6 +94,9 @@ export default function NavBar() {
               <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleSearchChange}
+                  onKeyUp={triggerSearch}
+                  value={searchValue}
               />
             </Search>
           </Grid>
@@ -100,6 +121,20 @@ export default function NavBar() {
             </Box>
           </Grid>
         </Grid>
+
+        {locationData != null && (
+            <Grid container spacing={{sm: 2}} alignItems={"center"}>
+              <Grid key={'result'} size={'auto'}>
+                <Typography
+                    noWrap
+                    component="div"
+                    sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+                >
+                  {locationData[0].LocalizedName}
+                </Typography>
+              </Grid>
+            </Grid>
+        )}
       </Paper>
     </Box>
   );

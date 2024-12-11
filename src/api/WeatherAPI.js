@@ -1,4 +1,4 @@
-export default async function apiCall() {
+export async function fetchForecast() {
     const response = await fetch('http://localhost:3001/weather')
     return await response.json()
 
@@ -8,6 +8,19 @@ export default async function apiCall() {
       detail: true
     }, {
         mode: 'no-cors'
+    }));
+*/
+}
+
+export async function fetchLocations(query) {
+
+    const response = await fetch(`http://localhost:3001/location`)
+    return await response.json()
+
+/*
+    return fetch('http://dataservice.accuweather.com/locations/v1/cities/search?' + new URLSearchParams({
+        apiKey: 'wKKjwferXpVkzLZ44Yuv4vu1lagbR8Nr',
+        q: query,
     }));
 */
 }
