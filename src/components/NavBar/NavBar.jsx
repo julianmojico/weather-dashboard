@@ -1,7 +1,6 @@
-import {styled, alpha, useColorScheme} from '@mui/material/styles';
+import { styled, alpha, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
@@ -9,8 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {useState} from "react";
-import {fetchLocations} from "../../api/WeatherAPI.js";
+import { useState } from "react";
+import LocationList from '../LocationList/LocationList.jsx';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -32,23 +31,8 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
-
 export default function NavBar() {
   const { mode, setMode } = useColorScheme();
-  const [searchValue, setSearchValue] = useState("")
   const [locationData, setLocationData] = useState(null)
   if (!mode) {
     return null;
@@ -58,30 +42,16 @@ export default function NavBar() {
     setMode(event.target.value);
   }
 
-  function handleSearchChange(event) {
-      let value = event.target.value;
-      setSearchValue(value)
-  }
-
-  function triggerSearch(event) {
-    event.preventDefault();
-    if (event.key === 'Enter') {
-      fetchLocations(searchValue)
-          .then((data) => setLocationData(data))
-          .catch(error => console.error(error));
-    }
-  }
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Paper elevation={6} sx={{ borderRadius: 2, p: 1.5, textAlign: 'start' }}>
         <Grid container spacing={{ sm: 2 }} alignItems="center">
           <Grid key={'appTitle'} size={'auto'}>
             <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               WEATHER
             </Typography>
@@ -91,13 +61,7 @@ export default function NavBar() {
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                  onChange={handleSearchChange}
-                  onKeyUp={triggerSearch}
-                  value={searchValue}
-              />
+              <LocationList></LocationList>
             </Search>
           </Grid>
           <Grid key={'mode'} size={'auto'}>
@@ -105,13 +69,13 @@ export default function NavBar() {
               <FormControl fullWidth size={'small'}>
                 <InputLabel id="demo-simple-select-label">Theme</InputLabel>
                 <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={mode}
-                    label="Theme"
-                    onChange={handleChange}
-                    variant="outlined"
-                    autoWidth
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={mode}
+                  label="Theme"
+                  onChange={handleChange}
+                  variant="outlined"
+                  autoWidth
                 >
                   <MenuItem value={'system'}>System</MenuItem>
                   <MenuItem value={'light'}>Light</MenuItem>
@@ -123,17 +87,17 @@ export default function NavBar() {
         </Grid>
 
         {locationData != null && (
-            <Grid container spacing={{sm: 2}} alignItems={"center"}>
-              <Grid key={'result'} size={'auto'}>
-                <Typography
-                    noWrap
-                    component="div"
-                    sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-                >
-                  {locationData[0].LocalizedName}
-                </Typography>
-              </Grid>
+          <Grid container spacing={{ sm: 2 }} alignItems={"center"}>
+            <Grid key={'result'} size={'auto'}>
+              <Typography
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+              >
+                {locationData[0].LocalizedName}
+              </Typography>
             </Grid>
+          </Grid>
         )}
       </Paper>
     </Box>
