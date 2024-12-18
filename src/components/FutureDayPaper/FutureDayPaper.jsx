@@ -7,7 +7,6 @@ export default function FutureDayPaper({epochDate, icon, minTemp, maxTemp}) {
 
     let dayOfWeek = mapEpochToDayAndDate(epochDate);
 
-    debugger;
     return (
         <Paper elevation={6} sx={{maxWidth: 1, borderRadius: 2, p: 1.5}}>
             <Typography variant="h5" sx={{color: "text.secondary", fontWeight: 'regular'}}>
